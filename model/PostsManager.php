@@ -4,16 +4,16 @@ class PostsManager extends Manager{
     //Récupère les billets et les affiches
     public function getPosts(){
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
-        return $req;
+        $posts = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
+        return $posts;
     }
 
     //Récupère un billet et l'affiche
-    public function getPost(){
+    public function getPost($postId){
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?')
-        $req->execute(array($postId));
-        $post = $req->fetch();
+        $post = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
+        $post->execute(array($postId));
+        $post->fetch();
         return $post;
     }
 
@@ -25,7 +25,7 @@ class PostsManager extends Manager{
             ':title' => $title,
             ':content' => $content
         ));
-        return $add
+        return $add;
     }
 
     //Met à jour un billet existant
@@ -40,7 +40,7 @@ class PostsManager extends Manager{
     }
 
     //Supprime un billet
-    public function deletePost(){
+    public function deletePost($postId){
         $db = $this->dbConnect();
         $delete = $db->exec('DELETE FROM posts WHERE id = ?');
     }
