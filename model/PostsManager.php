@@ -1,11 +1,13 @@
 <?php
- require_once('Manager.php');
+namespace P4\Blog\Model;
+
+ require_once('model/Manager.php');
 class PostsManager extends Manager{
     //Récupère les billets et les affiches
     public function getPosts(){
         $db = $this->dbConnect();
-        $posts = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
-        return $posts;
+        $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
+        return $req;
     }
 
     //Récupère un billet et l'affiche
