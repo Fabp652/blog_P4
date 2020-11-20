@@ -1,12 +1,10 @@
 <?php
-class Manager{
-    const DB_HOST = 'mysql:host=localhost;dbname=blog;charset=utf8';
-    const DB_USER = 'root';
-    const DB_PASS = 'root';
+namespace P4\Blog\Model;
 
+class Manager{
     protected function dbConnect(){
         try{
-            $db = new PDO(self::DB_HOST, self::DB_USER, self::DB_PASS);
+            $db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'root');
             return $db;
         }
 
