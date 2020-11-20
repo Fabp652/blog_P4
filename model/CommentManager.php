@@ -1,5 +1,7 @@
 <?php
-require_once('Manager.php');
+namespace P4\Blog\Model;
+
+require_once('model/Manager.php');
 class CommentManager extends Manager{
     //Récupère les commentaires du billet
     public function getComments($postId){
