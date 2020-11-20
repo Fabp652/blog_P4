@@ -25,5 +25,5 @@ $posts->closeCursor();
 
 $content = ob_get_clean();
 
-require('template.php');
+require('view/template.php');
 ?>
