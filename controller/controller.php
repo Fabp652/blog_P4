@@ -4,7 +4,7 @@ require_once('model/CommentManager.php');
 
 //Appelle getPosts pour avoir et afficher la liste des billets
 function listPosts(){
-    $postsManager = new PostsManager();
+    $postsManager = new P4\Blog\Model\PostsManager();
     $posts = $postsManager->getPosts();
 
     require('view/listPostsView.php');
@@ -12,10 +12,10 @@ function listPosts(){
 
 //Appelle getPost() pour avoir et afficher le billet sélectionner et getComment pour les commentaires
 function post(){
-    $postsManager = new PostsManager();
-    $commentManager = new CommentManager();
+    $postManager = new P4\Blog\Model\PostsManager();
+    $commentManager = new P4\Blog\Model\CommentManager();
 
-    $post = $postsManager->getPost($_GET['id']);
+    $post = $postManager->getPost($_GET['id']);
     $comments = $commentManager->getComments($_GET['id']);
 
     require('view/postView.php');
