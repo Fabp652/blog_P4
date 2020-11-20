@@ -10,7 +10,6 @@
     </h3>
     <p>
         <?php nl2br(htmlspecialchars($post['content'])); ?>
-        <a href="index.php?action=post&amp;id=<?php $post['id']; ?>">Commentaires</a>
     </p>
 </div>
 
@@ -28,4 +27,4 @@ while($comment = $comments->fetch()){
 
 $comments->closeCursor();
 $content = ob_get_clean();
-require('template.php');
+require('view/template.php');
