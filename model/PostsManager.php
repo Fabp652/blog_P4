@@ -1,7 +1,5 @@
 <?php
-namespace P4\Blog\Model;
-
- require_once('model/Manager.php');
+require_once('model/Manager.php');
 class PostsManager extends Manager{
     //Récupère les billets et les affiches
     public function getPosts(){
