@@ -10,12 +10,12 @@ while ($blog = $posts->fetch()){
 
 <div class='chapter'>
     <h3>
-        <?php htmlspecialchars($blog['title']); ?>
-        le <?php $blog['creation_date_fr']; ?>
+        <?php echo htmlspecialchars($blog['title']); ?>
+        le <?php echo $blog['creation_date_fr']; ?>
     </h3>
     <p>
-        <?php nl2br(htmlspecialchars($blog['content'])); ?>
-        <a href="index.php?action=post&amp;id=<?php $blog['id'] ?>">Commentaires</a>
+        <?php echo nl2br(htmlspecialchars($blog['content'])); ?>
+        <a href="index.php?action=post&amp;id=<?php echo $blog['id'] ?>">Commentaires</a>
     </p>
 </div>
 
