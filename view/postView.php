@@ -5,11 +5,11 @@
 
 <div class='chapter'>
     <h3>
-        <?php htmlspecialchars($post['title']); ?>
-        le <?php $post['creation_date_fr']; ?>
+        <?php echo htmlspecialchars($post['title']); ?>
+        le <?php echo $post['creation_date_fr']; ?>
     </h3>
     <p>
-        <?php nl2br(htmlspecialchars($post['content'])); ?>
+        <?php echo nl2br(htmlspecialchars($post['content'])); ?>
     </p>
 </div>
 
