@@ -1,7 +1,4 @@
 <?php
-namespace P4\Blog\Model;
-use PDO;
-
 class Manager{
     protected function dbConnect(){
         try{
