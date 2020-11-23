@@ -13,17 +13,17 @@ class PostsManager extends Manager{
     //Récupère un billet et l'affiche
     public function getPost($postId){
         $db = $this->dbConnect();
-        $post = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
-        $post->execute(array($postId));
-        $post->fetch();
+        $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
+        $req->execute(array($postId));
+        $post = $req->fetch();
         return $post;
     }
 
     //Ajoute un billet
     public function addPost($title, $content){
         $db = $this->dbConnect();
-        $add = $db->prepare('INSERT INTO posts(title, content, creation_date) VALUES(:title,:content,NOW())');
-        $add->execute(array(
+        $req = $db->prepare('INSERT INTO posts(title, content, creation_date) VALUES(:title,:content,NOW())');
+        $add = $req->execute(array(
             ':title' => $title,
             ':content' => $content
         ));
@@ -33,8 +33,8 @@ class PostsManager extends Manager{
     //Met à jour un billet existant
     public function updatePost($title, $content){
         $db = $this->dbConnect();
-        $update = $db->prepare('UPDATE posts SET title = :title, content = :content, creation_date = NOW() WHERE id = ?');
-        $update->execute(array(
+        $req = $db->prepare('UPDATE posts SET title = :title, content = :content, creation_date = NOW() WHERE id = ?');
+        $update = $req->execute(array(
             ':title' => $title,
             ':content' => $content
         ));
