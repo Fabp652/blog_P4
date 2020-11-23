@@ -19,8 +19,8 @@
 while($comment = $comments->fetch()){
 ?>
 
-<p><?php htmlspecialchars($comment['author']); ?> le <?php $comment['comment_date_fr']; ?></p>
-<P><?php nl2br(htmlspecialchars($comment['comment'])); ?></P>
+<p><?php echo htmlspecialchars($comment['author']); ?> le <?php echo $comment['comment_date_fr']; ?></p>
+<P><?php echo nl2br(htmlspecialchars($comment['comment'])); ?></P>
 
 <?php
 }
