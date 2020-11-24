@@ -3,21 +3,20 @@ require('controller/controller.php');
 
 try{
     if(isset($_GET['action'])){
-        if($_GET['action'] == 'listPost'){
-            listPosts();
+        switch($_GET['action']){
+            case 'listPost' :
+                listPosts();
+            break;
+            case 'post' :
+                if(isset($_GET['id']) && $_GET['id'] > 0){
+                    post();
+                }
+            break;
         }
-        elseif($_GET['action'] == 'post'){
-            if(isset($_GET['id']) && $_GET['id'] > 0){
-                post();
-            }
-            else{
-                throw new Exception ('Aucun identifiant de billet envoyé');
-            }
-        }
-    }
-    else{
+    }else{
         listPosts();
     }
+    
 }
 
 catch(Exception $e){
