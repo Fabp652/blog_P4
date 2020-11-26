@@ -1,0 +1,47 @@
+h1, h3, p{
+    text-align: center;
+}
+
+.chapter{
+    border: 2px solid #38C4E0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chapter h3{
+    border-bottom: 2px solid #38c4e0;
+    margin-top: 0;
+    padding: 10px 0;
+    background-color: #99ddfc;
+    width: 100%;
+}
+
+.chapter p {
+    margin-top: 0;
+}
+
+.chapter a {
+    text-decoration: none;
+    border: 1px solid #38c4e0;
+    border-radius: 15px;
+    padding: 3px;
+    margin-bottom: 10px;
+    background-color: #38c4e0;
+    color: #000000;
+}
+
+.date_post{
+    align-self: flex-end;
+    margin: 0 10px;
+}
+
+.comments{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.comments, p{
+    margin: 5px 10px;
+}
