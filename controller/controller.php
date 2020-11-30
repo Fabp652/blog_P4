@@ -1,6 +1,7 @@
 <?php
 require_once('model/PostsManager.php');
 require_once('model/CommentManager.php');
+require_once('model/InscriptionManager.php');
 
 //Appelle getPosts pour avoir et afficher la liste des billets
 function listPosts(){
@@ -19,4 +20,14 @@ function post(){
     $comments = $commentManager->getComments($_GET['id']);
 
     require('view/postView.php');
+}
+
+function inscription(){
+    $inscriptionManager = new InscriptionManager();
+    $inscriptionManager->validPseudo();
+    $inscriptionManager->validPass();
+    $inscriptionManager->validEmail();
+    $inscriptionManager->inscriptionUser($pseudo, $passHash, $email);
+
+    require('view/inscriptionView.php');
 }
