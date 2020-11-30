@@ -8,6 +8,19 @@
 </head>
 
 <body>
+<nav>
+    <ul>
+        <li>
+            <a href='index.php?action=listPost'>Acceuil</a>
+        </li>
+        <li>
+            <a href='index.php?action=connection'>Connexion</a>
+        </li>
+        <li>
+            <a href='index.php?action=inscription'>Inscription</a>
+        </li>
+    </ul>
+</nav>
     <?php echo $content; ?>
 </body>
 
