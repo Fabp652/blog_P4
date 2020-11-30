@@ -12,6 +12,9 @@ try{
                     post();
                 }
             break;
+            case 'inscription' :
+                inscription();
+            break;
         }
     }else{
         listPosts();
