@@ -1,7 +1,7 @@
 <?php
 require('model/Manager.php');
 class InscriptionManager extends Manager{
-    validPseudo(){
+    public function validPseudo(){
         if(isset($_POST['pseudo'])){
             $db->dbConnect();
             $pseudo = htmlspecialchars($_POST['pseudo']);
@@ -15,7 +15,7 @@ class InscriptionManager extends Manager{
         }
     }
 
-    validPass(){
+    public function validPass(){
         if(isset($_POST['pass']) && isset($_POST['validPass'])){
             $db->dbConnect();
             $pass = htmlspecialchars($_POST['pass']);
@@ -30,7 +30,7 @@ class InscriptionManager extends Manager{
         }
     }
 
-    validEmail(){
+    public function validEmail(){
         if(isset($_POST['email'])){
             $db->dbConnect();
             $email = htmlspecialchars($_POST['email']);
@@ -42,7 +42,7 @@ class InscriptionManager extends Manager{
         }
     }
 
-    inscriptionUser(){
+    public function inscriptionUser(){
         $db->dbConnect();
         $inscription = $db->prepare('INSERT INTO users(pseudo, pass, email, inscription_date) VALUES(:pseudo, :pass, :email, CURDATE())');
         $inscription->execute(array(
