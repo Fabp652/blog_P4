@@ -1,7 +1,7 @@
 <?php
 require_once('model/PostsManager.php');
 require_once('model/CommentManager.php');
-require_once('model/InscriptionManager.php');
+require_once('model/UsersManager.php');
 
 //Appelle getPosts pour avoir et afficher la liste des billets
 function listPosts(){
@@ -23,11 +23,15 @@ function post(){
 }
 
 function inscription(){
-    $inscriptionManager = new InscriptionManager();
-    $inscriptionManager->validPseudo();
-    $inscriptionManager->validPass();
-    $inscriptionManager->validEmail();
-    $inscriptionManager->inscriptionUser($pseudo, $passHash, $email);
-
     require('view/inscriptionView.php');
+}
+
+function createUser($pseudo, $email, $password){;
+    if(preg_match('#[a-z0-9._-]{4}#', $pseudo) && preg_match('#[a-z0-9._-]{4}#', $password) && preg_match('#^[a-z0-9._-]+@[a-z0-9._-]{2,}[a-z]{2,4}$#', $email)){
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+        $newPseudo = $pseudo;
+        $newEmail = $email;
+        $usersManager = new UsersManager();
+        $usersManager->insertUser($newPseudo, $password_hash, $newEmail);
+    }    
 }

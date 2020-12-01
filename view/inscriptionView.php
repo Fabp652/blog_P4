@@ -4,13 +4,13 @@
 <h1>inscription</h1>
 <p>Veuillez rentrer vos données dans les champs ci-dessous pour créer un compte</p>
 
-<form action='index.php?action=newUser' method='POST'>
+<form action='index.php?action=create-user' method='POST'>
     <label>
         Votre pseudo : <input type='text' name='pseudo' />
     </label>
 
     <label>
-        Votr mot de passe : <input type='password' name='pass' />
+        Votr mot de passe : <input type='password' name='password' />
     </label>
 
     <label>

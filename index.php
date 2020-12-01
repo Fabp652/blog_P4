@@ -13,7 +13,14 @@ try{
                 }
             break;
             case 'inscription' :
-                inscription();
+                inscription();               
+            break;
+            case 'create-user' :
+                if(isset($_POST['pseudo']) && isset($_POST['email']) && isset($_POST['password'])){
+                    createUser($_POST['pseudo'], $_POST['email'], $_POST['password']);
+                }else{
+                    echo 'Erreur : vous n\'avez pas remplit tout les champs';
+                }
             break;
         }
     }else{
