@@ -11,5 +11,13 @@ class UsersManager extends Manager{
         ));
         echo 'inscription réussi';
         $inscription->closeCursor();
-    }   
+    }
+    
+    public function getUser($pseudo){
+        $db = $this->dbConnect();
+        $connection = $db->prepare('SELECT * FROM users WHERE pseudo = ?');
+        $connection->execute([$pseudo]);
+        $user = $connection->fetch();
+        return $user;
+    }
 }
