@@ -22,6 +22,16 @@ try{
                     echo 'Erreur : vous n\'avez pas remplit tout les champs';
                 }
             break;
+            case 'connection' :
+                connection();
+            break;
+            case 'connect-user' :
+                if(isset($_POST['pseudo']) && isset($_POST['password'])){
+                    connectUser($_POST['pseudo'], $_POST['password']);
+                }else{
+                    echo 'Erreur : vous n\'avez pas remplit tout les champs';
+                }                
+            break;
         }
     }else{
         listPosts();
