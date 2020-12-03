@@ -9,15 +9,15 @@
 
 <body>
 <nav>
-    <ul>
+    <ul class='nav-content'>
         <li>
-            <a href='index.php?action=listPost'>Acceuil</a>
+            <a href='index.php?action=listPost' class='nav-link'>Acceuil</a>
         </li>
         <li>
-            <a href='index.php?action=connection'>Connexion</a>
+            <a href='index.php?action=connection' class='nav-link'>Connexion</a>
         </li>
         <li>
-            <a href='index.php?action=inscription'>Inscription</a>
+            <a href='index.php?action=inscription' class='nav-link'>Inscription</a>
         </li>
     </ul>
 </nav>

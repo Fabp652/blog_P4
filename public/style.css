@@ -58,3 +58,21 @@ form{
     border-radius: 10px;
     padding: 15px;
 }
+
+.nav-content{
+    display : flex;
+    justify-content: flex-end;
+}
+
+.nav-content li{
+    list-style-type: none;
+}
+
+.nav-link{
+    text-decoration: none;
+    padding: 10px;
+}
+
+.nav-link:hover{
+    background-color: #38C4E0;
+}
