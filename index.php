@@ -36,6 +36,16 @@ try{
                 logout();
                 listPosts();
             break;
+            case 'change-password' :
+                changePassword();
+            break;
+            case 'new-password' :
+                if(isset($_POST['password'])){
+                    newPassword($_POST['password']);
+                }else{
+                    echo 'Erreur : veuillez remplir le champs pour modifier votre mot de passe';
+                }
+                
         }
     }else{
         listPosts();
