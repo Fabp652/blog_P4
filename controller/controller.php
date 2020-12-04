@@ -53,6 +53,8 @@ function connectUser($pseudo, $password){
                 session_start();
                 $_SESSION['id'] = $user['id'];
                 $_SESSION['pseudo'] = $user['pseudo'];
+                $_SESSION['email'] = $user['email'];
+                require('view/profileUserView.php');
             }else{
                 echo 'Le pseudo ou le mot de passe que vous avez rentré n\'est pas correct';
             }   
