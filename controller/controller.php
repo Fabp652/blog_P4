@@ -71,3 +71,14 @@ function logout(){
     $_SESSION = array();
     session_destroy();
 }
+
+function changePassword(){
+    require('view/changePasswordView.php');
+}
+
+function newPassword($password){
+    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+    $usersManager = new UsersManager();
+    $usersManager->updateUser($password_hash);
+    echo 'Mot de passe modifier';
+}
