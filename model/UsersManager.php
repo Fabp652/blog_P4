@@ -20,4 +20,12 @@ class UsersManager extends Manager{
         $user = $connection->fetch();
         return $user;
     }
+
+    public function updateUser($password){
+        $db = $this->dbConnect();
+        $update = $db->prepare('UPDATE users SET pass = :pass');
+        $update->execute([
+            'pass' => $password
+        ]);
+    }
 }
