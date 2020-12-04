@@ -28,7 +28,6 @@ try{
             case 'connect-user' :
                 if(isset($_POST['pseudo']) && isset($_POST['password'])){
                     connectUser($_POST['pseudo'], $_POST['password']);
-                    listPosts();
                 }else{
                     echo 'Erreur : vous n\'avez pas remplit tout les champs';
                 }                
