@@ -53,7 +53,6 @@ function connectUser($pseudo, $password){
                 session_start();
                 $_SESSION['id'] = $user['id'];
                 $_SESSION['pseudo'] = $user['pseudo'];
-                echo 'vous êtes connecté !';
             }else{
                 echo 'Le pseudo ou le mot de passe que vous avez rentré n\'est pas correct';
             }   
@@ -63,4 +62,10 @@ function connectUser($pseudo, $password){
     }else{
         echo 'Veuillez renseigner tous les champs pour vous connectez';
     }
+}
+
+function logout(){
+    session_start();
+    $_SESSION = array();
+    session_destroy();
 }
