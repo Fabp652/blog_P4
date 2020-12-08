@@ -11,17 +11,20 @@
 <nav>
     <ul class='nav-content'>
         <li>
-            <a href='index.php?action=listPost' class='nav-link'>Acceuil</a>
+            <a href='index.php?action=listPost' class='nav-link'>Accueil</a>
         </li>
         <?php
-        //if($_SESSION['id'] != 'null' && $_SESSION['pseudo'] != 'null'){
+        if(isset($_SESSION['pseudo'])){
         ?>
+        <li>
+            <a href='index.php?action=profile' class='nav-link'>Profil</a>
+        </li>
         <li>
             <a href='index.php?action=logout' class='nav-link'>Déconnexion</a>
         </li>
         <?php
-        //}else{
-            //var_dump($_SESSION['id'], $_SESSION['pseudo']);die();
+        }else{
+            session_destroy();
         ?>
         <li>
             <a href='index.php?action=connection' class='nav-link'>Connexion</a>
@@ -30,7 +33,7 @@
             <a href='index.php?action=inscription' class='nav-link'>Inscription</a>
         </li>
         <?php
-        //}
+        }
         ?>
     </ul>
 </nav>
