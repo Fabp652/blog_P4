@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('controller/controller.php');
 
 try{
@@ -32,8 +33,11 @@ try{
                     echo 'Erreur : vous n\'avez pas remplit tout les champs';
                 }                
             break;
+            case 'profile' :
+                profile();
+            break;
             case 'logout' :
-                logout();
+                session_unset();
                 listPosts();
             break;
             case 'change-password' :
@@ -43,9 +47,18 @@ try{
                 if(isset($_POST['password'])){
                     newPassword($_POST['password']);
                 }else{
-                    echo 'Erreur : veuillez remplir le champs pour modifier votre mot de passe';
+                    echo 'Veuillez remplir le champs pour modifier votre mot de passe';
                 }
-                
+            break;
+            case 'create-comment' :
+                if(isset($_POST['comment'])){
+                    createComment($_GET['id'], $_SESSION['pseudo'], $_POST['comment']);
+                }else{
+                    echo 'Veuillez écrire un commentaire pour pouvoir valider';
+                }
+            break;
+            default :
+                require('view/404.php');  
         }
     }else{
         listPosts();
