@@ -15,6 +15,17 @@
 
 <h2>Commentaires</h2>
 
+<?php
+if(isset($_SESSION['pseudo'])){
+?>
+<form action='index.php?action=create-comment&amp;id=<?=$post['id'] ?>' method="POST">
+    <textarea name="comment"></textarea>
+    <input type="submit" name="Ajouter un commentaire" />
+</form>
+<?php
+}
+?>
+
 <?php 
 while($comment = $comments->fetch()){
 ?>
