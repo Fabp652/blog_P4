@@ -28,11 +28,12 @@ function inscription(){
 
 function createUser($pseudo, $email, $password){;
     if(preg_match('#[a-z0-9._-]{4}#', $pseudo) && preg_match('#[a-z0-9._-]{4}#', $password) && preg_match('#^[a-z0-9._-]+@[a-z0-9._-]{2,}[a-z]{2,4}$#', $email)){
-        $password_hash = password_hash(htmlspecialchars($password, PASSWORD_DEFAULT));
+        $password_hash = password_hash(htmlspecialchars($password), PASSWORD_DEFAULT);
         $newPseudo = htmlspecialchars($pseudo);
         $newEmail = htmlspecialchars($email);
         $usersManager = new UsersManager();
         $usersManager->insertUser($newPseudo, $password_hash, $newEmail);
+        require('view/connexionView.php');
     }else{
         echo 'Veuillez remplir tous les champs obligatoires pour vous inscrire';
     }
@@ -50,9 +51,8 @@ function connectUser($pseudo, $password){
         if($getPseudo == $user['pseudo']){
             $goodPassword = password_verify(htmlspecialchars($password), $user['pass']);
             if($goodPassword){
-                session_start();
                 $_SESSION['id'] = $user['id'];
-                $_SESSION['pseudo'] = $user['pseudo'];
+                $_SESSION['pseudo'] = $getPseudo;
                 $_SESSION['email'] = $user['email'];
                 require('view/profileUserView.php');
             }else{
@@ -66,11 +66,11 @@ function connectUser($pseudo, $password){
     }
 }
 
-function logout(){
-    session_start();
-    $_SESSION = array();
-    session_destroy();
+function profile(){
+    require('view/profileUserView.php');
 }
+
+
 
 function changePassword(){
     require('view/changePasswordView.php');
@@ -81,4 +81,15 @@ function newPassword($password){
     $usersManager = new UsersManager();
     $usersManager->updateUser($password_hash);
     echo 'Mot de passe modifier';
+}
+
+function createComment($postId, $pseudo, $comment){
+    $commentManager = new CommentManager();
+    $affectedLines = $commentManager->postComment($postId, $pseudo, $comment);
+    if ($affectedLines === false) {
+        throw new Exception('Impossible d\'ajouter le commentaire !');
+    }
+    else {
+        header('Location: index.php?action=post&id=' . $postId);
+    }
 }
