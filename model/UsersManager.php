@@ -9,7 +9,6 @@ class UsersManager extends Manager{
             'pass' => $password,
             'email' => $email
         ));
-        echo 'inscription réussi';
         $inscription->closeCursor();
     }
     
