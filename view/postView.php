@@ -32,6 +32,13 @@ while($comment = $comments->fetch()){
 <div class='comments'>
 <p><?php echo htmlspecialchars($comment['author']); ?> le <?php echo $comment['comment_date_fr']; ?> :</p>
 <P><?php echo nl2br(htmlspecialchars($comment['comment'])); ?></P>
+<?php
+if($_SESSION['pseudo'] == $comment['author']){
+?>
+<a href="index.php?action=change-comment&amp;post-id=<?=$post['id']?>&amp;comment-id=<?=$comment['id']?>">Modifier</a>
+<?php
+}
+?>
 </div>
 <?php
 }
