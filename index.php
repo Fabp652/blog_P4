@@ -57,6 +57,16 @@ try{
                     echo 'Veuillez écrire un commentaire pour pouvoir valider';
                 }
             break;
+            case 'change-comment' :
+                changeComment();
+            break;
+            case 'new-comment' :
+                if(isset($_POST['comment'])){
+                    newComment($_GET['post-id'],$_GET['comment-id'], $_POST['comment']);
+                }else{
+                    echo 'Veuillez écrire un nouveau commentaire pour modifier votre commentaire';
+                }
+            break;
             default :
                 require('view/404.php');  
         }
