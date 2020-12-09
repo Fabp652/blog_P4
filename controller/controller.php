@@ -108,3 +108,14 @@ function newComment($postId, $commentId, $comment){
         header('Location: index.php?action=post&id=' . $postId);
     }
 }
+
+function clearComment($postId, $commentId){
+    $commentManager = new CommentManager;
+    $clearComment = $commentManager->deleteComment($commentId);
+    if ($clearComment === false) {
+        throw new Exception('Impossible de supprimer le commentaire !');
+    }
+    else {
+        header('Location: index.php?action=post&id=' . $postId);
+    }
+}
