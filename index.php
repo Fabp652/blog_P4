@@ -67,6 +67,11 @@ try{
                     echo 'Veuillez écrire un nouveau commentaire pour modifier votre commentaire';
                 }
             break;
+            case 'clear-comment' :
+                if(isset($_GET['post-id']) && isset($_GET['comment-id'])){
+                    clearComment($_GET['post-id'], $_GET['comment-id']);
+                }                
+            break;
             default :
                 require('view/404.php');  
         }
