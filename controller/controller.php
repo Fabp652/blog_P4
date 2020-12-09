@@ -93,3 +93,18 @@ function createComment($postId, $pseudo, $comment){
         header('Location: index.php?action=post&id=' . $postId);
     }
 }
+
+function changeComment(){
+    require('view/changeCommentView.php');
+}
+
+function newComment($postId, $commentId, $comment){
+    $commentManager = new CommentManager();
+    $changeComment = $commentManager->updateComment($commentId, $comment);
+    if ($changeComment === false) {
+        throw new Exception('Impossible de modifier le commentaire !');
+    }
+    else {
+        header('Location: index.php?action=post&id=' . $postId);
+    }
+}
