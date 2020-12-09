@@ -23,8 +23,8 @@ class CommentManager extends Manager{
     //Modifie un commentaire
     public function updateComment($id, $comment){
         $db = $this->dbConnect();
-        $updateComment = $db->prepare('UPDATE comments SET comment = :comment, comment_date = NOW() WHERE id = :id');
-        $updateComment->execute(array(
+        $updateQuery = $db->prepare('UPDATE comments SET comment = :comment, comment_date = NOW() WHERE id = :id');
+        $updateComment = $updateQuery->execute(array(
             ':id' => $id,
             ':comment' => $comment            
         ));
@@ -32,8 +32,10 @@ class CommentManager extends Manager{
     }
 
     //Supprime un commentaire
-    public function deleteComment($commentId){
+    public function deleteComment($id){
         $db = $this->dbConnect();
-        $deleteComment = $db->exec('DELETE FROM comments WHERE id = ?');
+        $deleteQuery = $db->prepare('DELETE FROM comments WHERE id = ?');
+        $deleteComment = $deleteQuery->execute([$id]);
+        return $deleteComment;
     }
 }
