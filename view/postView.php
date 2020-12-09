@@ -36,6 +36,7 @@ while($comment = $comments->fetch()){
 if($_SESSION['pseudo'] == $comment['author']){
 ?>
 <a href="index.php?action=change-comment&amp;post-id=<?=$post['id']?>&amp;comment-id=<?=$comment['id']?>">Modifier</a>
+<a href="index.php?action=clear-comment&amp;post-id=<?=$post['id']?>&amp;comment-id=<?=$comment['id']?>">Supprimer</a>
 <?php
 }
 ?>
