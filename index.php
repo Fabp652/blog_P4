@@ -72,8 +72,15 @@ try{
                     clearComment($_GET['post-id'], $_GET['comment-id']);
                 }                
             break;
+            case 'new-post' :
+                newPost();
+            break;
+            case 'create-post' :
+                if(isset($_GET['user-id']) && isset($_POST['title']) && isset($_POST['content']))
+                createPost($_GET['user-id'], $_POST['title'], $_POST['content']);
+            break;
             default :
-                require('view/404.php');  
+                require('view/404.php');
         }
     }else{
         listPosts();
