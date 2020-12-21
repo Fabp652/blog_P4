@@ -119,3 +119,18 @@ function clearComment($postId, $commentId){
         header('Location: index.php?action=post&id=' . $postId);
     }
 }
+
+function newPost(){
+    require('view/newPostView.php');
+}
+
+function createPost($userId, $title, $content){
+    $postManager = new PostsManager;
+    $createPost = $postManager->addPost($userId, $title, $content);
+    if ($createPost === false) {
+        throw new Exception('Impossible de créer le billet !');
+    }
+    else {
+        header('Location: index.php?action=listPost');
+    }
+}
