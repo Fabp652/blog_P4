@@ -18,10 +18,11 @@ class PostsManager extends Manager{
     }
 
     //Ajoute un billet
-    public function addPost($title, $content){
+    public function addPost($userId, $title, $content){
         $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO posts(title, content, creation_date) VALUES(:title,:content,NOW())');
+        $req = $db->prepare('INSERT INTO posts(user_id, title, content, creation_date) VALUES(:user_id, :title,:content,NOW())');
         $add = $req->execute(array(
+            ':user_id' => $userId,
             ':title' => $title,
             ':content' => $content
         ));
