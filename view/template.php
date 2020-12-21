@@ -17,6 +17,9 @@
         if(isset($_SESSION['pseudo'])){
         ?>
         <li>
+            <a href="index.php?action=new-post&amp;user-id=<?=$_SESSION['id']?>" class='nav-link'>Créer un billet</a>
+        </li>
+        <li>
             <a href='index.php?action=profile' class='nav-link'>Profil</a>
         </li>
         <li>
@@ -24,7 +27,6 @@
         </li>
         <?php
         }else{
-            session_destroy();
         ?>
         <li>
             <a href='index.php?action=connection' class='nav-link'>Connexion</a>
