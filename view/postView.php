@@ -33,7 +33,7 @@ while($comment = $comments->fetch()){
 <p><?php echo htmlspecialchars($comment['author']); ?> le <?php echo $comment['comment_date_fr']; ?> :</p>
 <P><?php echo nl2br(htmlspecialchars($comment['comment'])); ?></P>
 <?php
-if($_SESSION['pseudo'] == $comment['author']){
+if(isset($_SESSION['pseudo']) && $_SESSION['pseudo'] == $comment['author']){
 ?>
 <a href="index.php?action=change-comment&amp;post-id=<?=$post['id']?>&amp;comment-id=<?=$comment['id']?>">Modifier</a>
 <a href="index.php?action=clear-comment&amp;post-id=<?=$post['id']?>&amp;comment-id=<?=$comment['id']?>">Supprimer</a>
