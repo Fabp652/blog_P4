@@ -30,8 +30,8 @@ if(isset($_SESSION['pseudo'])){
 while($comment = $comments->fetch()){
 ?>
 <div class='comments'>
-<p><?php echo htmlspecialchars($comment['author']); ?> le <?= $comment['comment_date_fr']; ?> :</p>
-<P><?php echo nl2br(htmlspecialchars($comment['comment'])); ?></P>
+<p><?=htmlspecialchars($comment['author']); ?> le <?= $comment['comment_date_fr']; ?> :</p>
+<P><?=nl2br(htmlspecialchars($comment['comment'])); ?></P>
 <?php
 if(isset($_SESSION['pseudo']) && $_SESSION['pseudo'] == $comment['author']){
 ?>
