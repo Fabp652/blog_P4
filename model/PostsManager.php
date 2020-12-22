@@ -30,10 +30,11 @@ class PostsManager extends Manager{
     }
 
     //Met à jour un billet existant
-    public function updatePost($title, $content){
+    public function updatePost($postId, $title, $content){
         $db = $this->dbConnect();
-        $req = $db->prepare('UPDATE posts SET title = :title, content = :content, creation_date = NOW() WHERE id = ?');
+        $req = $db->prepare('UPDATE posts SET title = :title, content = :content, creation_date = NOW() WHERE id = :id');
         $update = $req->execute(array(
+            ':id' =>$postId,
             ':title' => $title,
             ':content' => $content
         ));
@@ -43,6 +44,8 @@ class PostsManager extends Manager{
     //Supprime un billet
     public function deletePost($postId){
         $db = $this->dbConnect();
-        $delete = $db->exec('DELETE FROM posts WHERE id = ?');
+        $req = $db->prepare('DELETE FROM posts WHERE id = ?');
+        $delete = $req->execute([$postId]);
+        return $delete;
     }
 }
