@@ -134,3 +134,29 @@ function createPost($userId, $title, $content){
         header('Location: index.php?action=listPost');
     }
 }
+
+function changePost(){
+    require('view/changePostView.php');
+}
+
+function updatePost($id, $title, $content){
+    $postManager = new PostsManager;
+    $updatePost = $postManager->updatePost($id, $title, $content);
+    if ($updatePost === false){
+        throw new Exception('Impossible de modifier le billet !');
+    }
+    else{
+        header('Location:index.php?action=listPost');
+    }
+}
+
+function clearPost($id){
+    $postManager = new PostsManager;
+    $deletePost = $postManager->deletePost($id);
+    if($deletePost === false){
+        throw new Exception('Impossible de supprimer le billet !');
+    }
+    else{
+        header('Location:index.php?action=listPost');
+    }
+}
