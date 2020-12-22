@@ -15,10 +15,14 @@
         </li>
         <?php
         if(isset($_SESSION['pseudo'])){
+            if($_SESSION['pseudo'] == 'Jean.Forteroche'){
         ?>
         <li>
             <a href="index.php?action=new-post&amp;user-id=<?=$_SESSION['id']?>" class='nav-link'>Créer un billet</a>
         </li>
+        <?php
+            }
+        ?>
         <li>
             <a href='index.php?action=profile' class='nav-link'>Profil</a>
         </li>
