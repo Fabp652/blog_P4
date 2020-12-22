@@ -79,6 +79,19 @@ try{
                 if(isset($_GET['user-id']) && isset($_POST['title']) && isset($_POST['content']))
                 createPost($_GET['user-id'], $_POST['title'], $_POST['content']);
             break;
+            case 'change-post' :
+                changePost();
+            break;
+            case 'update-post' :
+                if(isset($_POST['title']) && isset($_POST['content'])){
+                    updatePost($_GET['id'], $_POST['title'], $_POST['content']);
+                }
+            break;
+            case 'delete-post' :
+                if(isset($_GET['id'])){
+                    clearPost($_GET['id']);
+                }                
+            break;
             default :
                 require('view/404.php');
         }
