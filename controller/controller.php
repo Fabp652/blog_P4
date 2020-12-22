@@ -27,8 +27,8 @@ function inscription(){
 }
 
 function createUser($pseudo, $email, $password){;
-    if(preg_match('#[a-z0-9._-]{4}#', $pseudo) && preg_match('#[a-z0-9._-]{4}#', $password) && preg_match('#^[a-z0-9._-]+@[a-z0-9._-]{2,}[a-z]{2,4}$#', $email)){
-        $password_hash = password_hash(htmlspecialchars($password), PASSWORD_DEFAULT);
+    if(preg_match('#[A-Za-z0-9._-]{4,}#', $pseudo) && preg_match('#[A-Za-z0-9._-]{4,}#', $password) && preg_match('#^[A-Za-z0-9._-]+@[a-z0-9._-]{2,}[a-z]{2,4}$#', $email)){
+        $password_hash = password_hash(htmlspecialchars($password), PASSWORD_BCRYPT, ['salt']);
         $newPseudo = htmlspecialchars($pseudo);
         $newEmail = htmlspecialchars($email);
         $usersManager = new UsersManager();
@@ -44,7 +44,7 @@ function connection(){
 }
 
 function connectUser($pseudo, $password){
-    if(preg_match('#[a-z0-9._-]{4}#', $pseudo) && preg_match('#[a-z0-9._-]{4}#', $password)){
+    if(preg_match('#[A-Za-z0-9._-]{4}#', $pseudo) && preg_match('#[A-Za-z0-9._-]{4}#', $password)){
         $getPseudo = htmlspecialchars($pseudo);
         $usersManager = new UsersManager();
         $user = $usersManager->getUser($getPseudo);
@@ -77,7 +77,7 @@ function changePassword(){
 }
 
 function newPassword($password){
-    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+    $password_hash = password_hash($password, PASSWORD_BCRYPT);
     $usersManager = new UsersManager();
     $usersManager->updateUser($password_hash);
     echo 'Mot de passe modifier';
