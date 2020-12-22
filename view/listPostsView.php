@@ -15,11 +15,16 @@ while ($blog = $posts->fetch()){
     <p>
         <?php echo nl2br(htmlspecialchars($blog['content'])); ?>
     </p>
-    <a href="index.php?action=post&amp;id=<?php echo $blog['id'] ?>">Commentaires</a>
-    <p class='date_post'>Publié le <?php echo $blog['creation_date_fr']; ?></p>
+    <a href="index.php?action=post&amp;id=<?= $blog['id'] ?>">Commentaires</a>
+    <p class='date_post'>Publié le <?= $blog['creation_date_fr']; ?></p>
 </div>
-
+<?php 
+    if($_SESSION['pseudo'] == 'Jean.Forteroche'){        
+?> 
+<a href="index.php?action=change-post&amp;id=<?= $blog['id']?>">Modifier</a>
+<a href="index.php?action=delete-post&amp;id=<?= $blog['id']?>">Supprimer</a>
 <?php
+    }
 }
 $posts->closeCursor();
 
