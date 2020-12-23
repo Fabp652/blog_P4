@@ -19,7 +19,7 @@ while ($blog = $posts->fetch()){
     <p class='date_post'>Publié le <?= $blog['creation_date_fr']; ?></p>
 </div>
 <?php 
-    if($_SESSION['pseudo'] == 'Jean.Forteroche'){        
+    if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){        
 ?> 
 <a href="index.php?action=change-post&amp;id=<?= $blog['id']?>">Modifier</a>
 <a href="index.php?action=delete-post&amp;id=<?= $blog['id']?>">Supprimer</a>
