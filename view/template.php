@@ -15,7 +15,7 @@
         </li>
         <?php
         if(isset($_SESSION['pseudo'])){
-            if($_SESSION['pseudo'] == 'Jean.Forteroche'){
+            if($_SESSION['role'] == 'admin'){
         ?>
         <li>
             <a href="index.php?action=new-post&amp;user-id=<?=$_SESSION['id']?>" class='nav-link'>Créer un billet</a>
