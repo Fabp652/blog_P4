@@ -53,7 +53,9 @@ function connectUser($pseudo, $password){
             if($goodPassword){
                 $_SESSION['id'] = $user['id'];
                 $_SESSION['pseudo'] = $getPseudo;
+                $_SESSION['password'] = htmlspecialchars($password);
                 $_SESSION['email'] = $user['email'];
+                $_SESSION['role'] = $user['role'];
                 require('view/profileUserView.php');
             }else{
                 echo 'Le pseudo ou le mot de passe que vous avez rentré n\'est pas correct';
@@ -120,8 +122,16 @@ function clearComment($postId, $commentId){
     }
 }
 
-function newPost(){
-    require('view/newPostView.php');
+function authentification(){
+    require('view/authentificationView.php');
+}
+
+function checkAuthentification($pseudo, $password){
+    if($pseudo === $_SESSION['pseudo'] && $password === $_SESSION['password']){
+        require('view/newPostView.php');
+    }else{
+        echo 'Le pseudo ou le mot de passe n\'est pas correct';
+    }
 }
 
 function createPost($userId, $title, $content){
