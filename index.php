@@ -73,7 +73,16 @@ try{
                 }                
             break;
             case 'new-post' :
-                newPost();
+                if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
+                    authentification();
+                }else{
+                    echo 'Vous n\'avez pas l\'autorisation d\'accéder à cette page';
+                }
+            break;
+            case 'authentification' :
+                if(isset($_POST['pseudo']) && isset($_POST['password'])){
+                    checkAuthentification($_POST['pseudo'], $_POST['password']);
+                }
             break;
             case 'create-post' :
                 if(isset($_GET['user-id']) && isset($_POST['title']) && isset($_POST['content']))
