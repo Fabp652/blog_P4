@@ -3,14 +3,22 @@ require_once('model/Manager.php');
 class UsersManager extends Manager{
     public function insertUser($pseudo, $password, $email){
         $db = $this->dbConnect();
-        $inscription = $db->prepare('INSERT INTO users(pseudo, pass, email, role, inscription_date) VALUES(:pseudo, :pass, :email, :role, CURDATE())');
+        $inscription = $db->prepare('INSERT INTO users(pseudo, pass, email, is_admin, inscription_date) VALUES(:pseudo, :pass, :email, :is_admin, CURDATE())');
         $inscription->execute(array(
             'pseudo' => $pseudo,
             'pass' => $password,
             'email' => $email,
-            'role' => 'user'
+            'is_admin' => '0'
         ));
         $inscription->closeCursor();
+    }
+
+    public function getPseudo($id){
+        $db = $this->dbConnect();
+        $user = $db->prepare('SELECT pseudo FROM users WHERE id = ?');
+        $user->execute([$id]);
+        $pseudo = $user->fetch();
+        return $pseudo['pseudo'];
     }
     
     public function getUser($pseudo){
