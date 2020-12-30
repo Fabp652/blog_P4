@@ -52,7 +52,7 @@ try{
             break;
             case 'create-comment' :
                 if(isset($_POST['comment'])){
-                    createComment($_GET['id'], $_SESSION['pseudo'], $_POST['comment']);
+                    createComment($_GET['id'], $_SESSION['id'], $_POST['comment']);
                 }else{
                     echo 'Veuillez écrire un commentaire pour pouvoir valider';
                 }
@@ -73,7 +73,7 @@ try{
                 }                
             break;
             case 'new-post' :
-                if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
+                if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == '1'){
                     authentification();
                 }else{
                     echo 'Vous n\'avez pas l\'autorisation d\'accéder à cette page';
