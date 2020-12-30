@@ -4,18 +4,18 @@ class CommentManager extends Manager{
     //Récupère les commentaires du billet
     public function getComments($postId){
         $db = $this->dbConnect();
-        $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
+        $comments = $db->prepare('SELECT id, user_id, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
         $comments->execute(array($postId));
         return $comments;
     }
 
     //Ajoute un commentaire
-    public function postComment($postId, $author, $comment){
+    public function postComment($postId, $userId, $comment){
         $db = $this->dbConnect();
-        $comments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(:post_id, :author, :comment, NOW())');
+        $comments = $db->prepare('INSERT INTO comments(post_id, user_id, comment, comment_date) VALUES(:post_id, :user_id, :comment, NOW())');
         $addComment = $comments->execute(array(
             ':post_id' => $postId, 
-            ':author' => $author, 
+            ':user_id' => $userId, 
             ':comment' => $comment));
         return $addComment;
     }
