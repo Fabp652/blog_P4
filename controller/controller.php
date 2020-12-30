@@ -14,12 +14,18 @@ function listPosts(){
 //Appelle getPost() pour avoir et afficher le billet sélectionner et getComment pour les commentaires
 function post(){
     $postManager = new PostsManager();
-    $commentManager = new CommentManager();
+    $commentManager = new CommentManager();    
 
     $post = $postManager->getPost($_GET['id']);
     $comments = $commentManager->getComments($_GET['id']);
-
+    
     require('view/postView.php');
+}
+
+function getAuthor($userId){
+    $usersManager = new UsersManager();
+    $author = $usersManager->getPseudo($userId);
+    return $author;
 }
 
 function inscription(){
@@ -55,7 +61,7 @@ function connectUser($pseudo, $password){
                 $_SESSION['pseudo'] = $getPseudo;
                 $_SESSION['password'] = htmlspecialchars($password);
                 $_SESSION['email'] = $user['email'];
-                $_SESSION['role'] = $user['role'];
+                $_SESSION['is_admin'] = $user['is_admin'];
                 require('view/profileUserView.php');
             }else{
                 echo 'Le pseudo ou le mot de passe que vous avez rentré n\'est pas correct';
@@ -85,9 +91,9 @@ function newPassword($password){
     echo 'Mot de passe modifier';
 }
 
-function createComment($postId, $pseudo, $comment){
+function createComment($postId, $userId, $comment){
     $commentManager = new CommentManager();
-    $affectedLines = $commentManager->postComment($postId, $pseudo, $comment);
+    $affectedLines = $commentManager->postComment($postId, $userId, $comment);
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
