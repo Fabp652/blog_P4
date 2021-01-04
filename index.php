@@ -101,6 +101,21 @@ try{
                     clearPost($_GET['id']);
                 }                
             break;
+            case 'admin' :
+                if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1){
+                    admin();
+                }else{
+                    echo 'Vous n\'avez pas l\'autorisation pour accéder à cette page';
+                }
+            break;
+            case 'report' :
+                if(isset($_GET['comment-id'])){
+                    report($_GET['comment-id']);
+                }else{
+                    echo 'Erreur';
+                }
+                
+            break;
             default :
                 require('view/404.php');
         }
