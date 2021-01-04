@@ -20,6 +20,9 @@
         <li>
             <a href="index.php?action=new-post&amp;user-id=<?=$_SESSION['id']?>" class='nav-link'>Créer un billet</a>
         </li>
+        <li>
+            <a href="index.php?action=admin" class='nav-link'>Espace d'administration</a>
+        </li>
         <?php
             }
         ?>
