@@ -176,3 +176,17 @@ function clearPost($id){
         header('Location:index.php?action=listPost');
     }
 }
+
+function admin(){
+    require('view/adminView.php');
+}
+
+function report($commentId){
+    $commentManager = new CommentManager;
+    $reportComment = $commentManager->reportComment($commentId);
+    if($reportComment == true){
+        echo 'Commentaire signaler !';
+    }else{
+        echo 'Erreur : le commentaire n\'a pas pus être signaler';
+    }
+}
