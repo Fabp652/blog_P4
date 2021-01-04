@@ -12,11 +12,12 @@ class CommentManager extends Manager{
     //Ajoute un commentaire
     public function postComment($postId, $userId, $comment){
         $db = $this->dbConnect();
-        $comments = $db->prepare('INSERT INTO comments(post_id, user_id, comment, comment_date) VALUES(:post_id, :user_id, :comment, NOW())');
+        $comments = $db->prepare('INSERT INTO comments(post_id, user_id, comment, report, comment_date) VALUES(:post_id, :user_id, :comment, :report, NOW())');
         $addComment = $comments->execute(array(
             ':post_id' => $postId, 
             ':user_id' => $userId, 
-            ':comment' => $comment));
+            ':comment' => $comment,
+            ':report' => 0));
         return $addComment;
     }
 
@@ -29,6 +30,13 @@ class CommentManager extends Manager{
             ':comment' => $comment            
         ));
         return $updateComment;
+    }
+
+    public function reportComment($id){
+        $db = $this->dbConnect();
+        $reportQuery = $db->prepare('UPDATE comments SET report = 1 WHERE id = ?');
+        $reportComment = $reportQuery->execute([$id]);
+        return $reportComment;
     }
 
     //Supprime un commentaire
