@@ -113,8 +113,14 @@ try{
                     report($_GET['comment-id']);
                 }else{
                     echo 'Erreur';
+                }                
+            break;
+            case 'admin-clear-comment' :
+                if(isset($_GET['comment-id'])){
+                    adminClearComment($_GET['comment-id']);
+                }else{
+                    echo 'Erreur';
                 }
-                
             break;
             default :
                 require('view/404.php');
