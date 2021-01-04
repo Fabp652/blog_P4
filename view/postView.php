@@ -30,8 +30,9 @@ if(isset($_SESSION['pseudo'])){
 while($comment = $comments->fetch()){
 ?>
 <div class='comments'>
-<p><?php echo getAuthor($comment['user_id']) ?> le <?= $comment['comment_date_fr']; ?> :</p>
+<p><?=getAuthor($comment['user_id']); ?> le <?= $comment['comment_date_fr']; ?> :</p>
 <P><?=nl2br(htmlspecialchars($comment['comment'])); ?></P>
+<a href="index.php?action=report&amp;comment-id=<?=$comment['id'] ?>">Signaler</a>
 <?php
 if(isset($_SESSION['id']) && $_SESSION['id'] == $comment['user_id']){
 ?>
