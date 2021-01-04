@@ -9,6 +9,12 @@ class CommentManager extends Manager{
         return $comments;
     }
 
+    public function getReportComments(){
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT id, user_id, comment FROM comments WHERE report = 1');
+        return $req;
+    }
+
     //Ajoute un commentaire
     public function postComment($postId, $userId, $comment){
         $db = $this->dbConnect();
