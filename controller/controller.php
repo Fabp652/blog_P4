@@ -178,6 +178,8 @@ function clearPost($id){
 }
 
 function admin(){
+    $commentManager = new CommentManager;
+    $reportComments = $commentManager->getReportComments();
     require('view/adminView.php');
 }
 
@@ -188,5 +190,15 @@ function report($commentId){
         echo 'Commentaire signaler !';
     }else{
         echo 'Erreur : le commentaire n\'a pas pus être signaler';
+    }
+}
+
+function adminClearComment($commentId){
+    $commentManager = new CommentManager;
+    $deleteComment = $commentManager->deleteComment($commentId);
+    if($deleteComment === false){
+        throw new Exception('Impossible de supprimer le billet !');
+    }else{
+        header('Location:index.php?action=admin');
     }
 }
