@@ -2,20 +2,24 @@
 <script src="https://cdn.tiny.cloud/1/zxsmm3d6tivwqxa3dwy565rzmyj5q4th6hyc2yqqqlhfld59/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
 tinymce.init({
-  selector: 'form'
+  selector: 'textarea',
+  width : '90%',
+  height : 500
 });
 </script>
 <?php $script = ob_get_clean();?>
 <?php $title = 'Nouveau chapitre'?>
 <?php ob_start()?>
-<h1 class="text-center">Créer un nouveau Chapitre</h1>
-<form action="index.php?action=create-post&amp;user-id=<?=$_GET['user-id']?>" method="POST" class="flex flex-col items-start justify-between h-48 w-1/3 m-auto shadow-lg rounded-xl p-4">
-    <label>
-        <input type="text" name="title" />
+<h1 class="text-center text-white text-4xl pt-20 mb-2">Créer un nouveau Chapitre</h1>
+<div class="bg-white w-4/5 m-auto p-10 rounded-t-xl">
+<form action="index.php?action=create-post&amp;user-id=<?=$_GET['user-id']?>" method="POST" class="flex flex-col items-center justify-between w-full">
+    <label class="my-2">
+        Titre : <input type="text" name="title" class="border border-solid focus:border-blue-800 focus:outline-none" />
     </label>
-    <textarea name="content"></textarea>
-    <input type="submit" name="Publier" class="self-center border border-solid border-blue-500 rounded-2xl p-1 bg-blue-500" />
+    <textarea name="content" class="my-2"></textarea>
+    <input type="submit" name="add-post" value="Publier" class="font-medium border border-solid border-blue-300 rounded-3xl py-2 px-3 bg-blue-300 my-2 cursor-pointer hover:bg-blue-400" />
 </form>
+</div>
 <?php
 $content = ob_get_clean();
 require('view/template.php');
