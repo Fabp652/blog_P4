@@ -11,6 +11,8 @@ try{
             case 'post' :
                 if(isset($_GET['id']) && $_GET['id'] > 0){
                     post();
+                }else{
+                    header('Location:index.php?action=error-404');
                 }
             break;
             case 'inscription' :
@@ -97,7 +99,7 @@ try{
                 }
             break;
             case 'delete-post' :
-                if(isset($_GET['id'])){
+                if(isset($_GET['id']) && isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1){
                     clearPost($_GET['id']);
                 }                
             break;
