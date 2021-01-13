@@ -11,7 +11,7 @@ class CommentManager extends Manager{
 
     public function getReportComments(){
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, user_id, comment FROM comments WHERE report = 1');
+        $req = $db->query('SELECT id, user_id, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin\') AS comment_date_fr FROM comments WHERE report = 1');
         return $req;
     }
 
