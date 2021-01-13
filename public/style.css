@@ -1,78 +1,17 @@
-h1, h3, p{
-    text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&display=swap');
+
+h1, h3, p, a{
+    font-family: 'Roboto', sans-serif;
 }
 
-.chapter{
-    border: 2px solid #38C4E0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+p{
+    font-weight: 300;
 }
 
-.chapter h3{
-    border-bottom: 2px solid #38c4e0;
-    margin-top: 0;
-    padding: 10px 0;
-    background-color: #99ddfc;
-    width: 100%;
+.index{
+    z-index: -1;
 }
 
-.chapter p {
-    margin-top: 0;
-}
-
-.chapter a {
-    text-decoration: none;
-    border: 1px solid #38c4e0;
-    border-radius: 15px;
-    padding: 3px;
-    margin-bottom: 10px;
-    background-color: #38c4e0;
-    color: #000000;
-}
-
-.date_post{
-    align-self: flex-end;
-    margin: 0 10px;
-}
-
-.comments{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.comments p{
-    margin: 5px 10px;
-}
-
-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 200px;
-    width: 455px;
-    margin: auto;
-    box-shadow: 10px 10px 15px black;
-    border-radius: 10px;
-    padding: 15px;
-}
-
-.nav-content{
-    display : flex;
-    justify-content: flex-end;
-}
-
-.nav-content li{
-    list-style-type: none;
-}
-
-.nav-link{
-    text-decoration: none;
-    padding: 10px;
-}
-
-.nav-link:hover{
-    background-color: #38C4E0;
+.bg-alaska{
+    background: url('images/background_body.jpg') content ;
 }
