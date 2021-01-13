@@ -1,7 +1,8 @@
 <?php $title = 'Erreur'; ?>
-TODO;
 <?php ob_start();?>
-<h1>ERREUR 404</h1>
-<p>Une erreur à été détecté veuillez réessayer</p>
+<div class="flex flex-col items-center">
+    <h1 class="text-7xl my-2">ERREUR 404</h1>
+    <p class="text-lg my-2">Une erreur à été détecté veuillez réessayer</p>
+</div>
 <?php $content = ob_get_clean(); ?>
 <?php require('template.php'); ?>
