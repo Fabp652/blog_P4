@@ -8,10 +8,12 @@ p{
     font-weight: 300;
 }
 
-.index{
-    z-index: -1;
+nav{
+    z-index: 9999;
 }
 
-.bg-alaska{
-    background: url('images/background_body.jpg') content ;
+.bg-banner{
+    background: url('images/background_banner.jpg');
+    background-size: cover;
+    z-index: 0;
 }
