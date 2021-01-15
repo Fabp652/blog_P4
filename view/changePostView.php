@@ -11,7 +11,7 @@ tinymce.init({
 <?php $title = 'Modfication du billet';?>
 <?php ob_start();?>
 <h1 class="text-center text-white text-4xl pt-20 mb-2">Modification du billet</h1>
-<div class="bg-white w-4/5 m-auto p-10 rounded-t-xl">
+<div class="bg-white w-4/5 m-auto p-10 rounded-xl">
 <form action="index.php?action=update-post&amp;id=<?=$_GET['id']?>" method="POST" class="flex flex-col items-center justify-between w-full">
     <label class="my-2">
         Titre : <input type="text" name="title" class="border border-solid focus:border-blue-800 focus:outline-none" />
