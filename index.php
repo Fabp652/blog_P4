@@ -22,6 +22,7 @@ try{
                 if(isset($_POST['pseudo']) && isset($_POST['email']) && isset($_POST['password'])){
                     createUser($_POST['pseudo'], $_POST['email'], $_POST['password']);
                 }else{
+                    header('Location:index.php?action=inscription');
                     echo 'Erreur : vous n\'avez pas remplit tout les champs';
                 }
             break;
