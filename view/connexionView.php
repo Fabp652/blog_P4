@@ -3,7 +3,7 @@
 <?php ob_start()?>
 <h1 class="text-center text-3xl mb-2">Connexion</h1>
 <div class="bg-white w-full py-6 md:w-4/5 m-auto md:p-6 rounded-xl">
-<form action = 'index.php?action=connect-user' method = 'POST' class="flex flex-col items-start justify-between w-11/12 md:w-3/4 lg:w-1/2 m-auto md:shadow-lg md:rounded-xl md:p-4">
+<form action = 'index.php?action=connect-user' method = 'POST' class="flex flex-col items-start justify-around w-11/12 md:w-3/4 lg:w-1/2 lg:h-72 m-auto md:shadow-lg md:rounded-xl md:p-4">
     <label class="my-2 w-full text-sm md:text-base md:w-5/6 lg:w-4/5 flex justify-between pt-2">
         Votre pseudo : <input type='text' name='pseudo' class="border border-solid focus:border-blue-800 focus:outline-none" />
     </label>
