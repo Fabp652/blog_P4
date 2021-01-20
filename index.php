@@ -91,7 +91,7 @@ try{
             break;
             case 'new-post' :
                 if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == '1'){
-                    authentification();
+                    newPost();
                 }else{
                     header('Location:index.php?action=error-404');
                 }
@@ -138,7 +138,7 @@ try{
             break;
             case 'admin' :
                 if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1){
-                    admin();
+                    authentification();
                 }else{
                     header('Location:index.php?action=error-404');
                 }
