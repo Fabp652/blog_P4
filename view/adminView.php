@@ -2,8 +2,9 @@
 
 <?php ob_start();?>
 <h1 class="text-center text-3xl mb-6">Espace d'administration</h1>
-<div class="bg-white w-full py-6 md:w-4/5 md:m-auto md:p-6 rounded-xl">
-<h3 class="text-center text-lg mt-2 mb-4">Commentaire(s) signalé(s) :</h3>
+<div class="bg-white w-full py-6 md:w-4/5 md:m-auto md:p-6 rounded-xl flex flex-col justify-around items-center">
+<a href="index.php?action=new-post&amp;user-id=<?=$_SESSION['id']?>" class='font-medium border border-solid border-blue-300 rounded-3xl py-2 px-3 mt-2 bg-blue-300 hover:bg-blue-400 text-sm my-6 md:text-base transform transition duration-500 ease-in-out hover:scale-110'>Créer un billet</a>
+<h3 class="text-lg mt-2 mb-4">Commentaire(s) signalé(s) :</h3>
 <?php
 while($report = $reportComments->fetch()){
 ?>
