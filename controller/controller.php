@@ -32,9 +32,14 @@ function inscription(){
     require('view/inscriptionView.php');
 }
 
-function createUser($pseudo, $email, $password){;
-    if(preg_match('#[A-Za-z0-9._-]{4,}#', $pseudo) && preg_match('#[A-Za-z0-9._-]{4,}#', $password) && preg_match('#^[A-Za-z0-9._-]+@[a-z0-9._-]{2,}[a-z]{2,4}$#', $email)){
-        $password_hash = password_hash(htmlspecialchars($password), PASSWORD_BCRYPT, ['salt']);
+function createUser($pseudo, $email, $password, $validPassword){;
+    if(preg_match('#[A-Za-z0-9._-]{4,}#', $pseudo) && preg_match('#[A-Za-z0-9._-]{4,}#', $password) && preg_match('#[A-Za-z0-9._-]{4,}#', $validPassword) && preg_match('#^[A-Za-z0-9._-]+@[a-z0-9._-]{2,}[a-z]{2,4}$#', $email)){
+        if($password == $validPassword){
+            $password_hash = password_hash(htmlspecialchars($password), PASSWORD_BCRYPT, ['salt']);
+        }
+        else{
+            header('Location:index.php?action=inscription');
+        }        
         $newPseudo = htmlspecialchars($pseudo);
         $newEmail = htmlspecialchars($email);
         $usersManager = new UsersManager();
@@ -42,7 +47,6 @@ function createUser($pseudo, $email, $password){;
         require('view/connexionView.php');
     }else{
         header('Location:index.php?action=inscription');
-        echo 'Veuillez remplir tous les champs obligatoires pour vous inscrire';
     }
 }
 
@@ -66,15 +70,12 @@ function connectUser($pseudo, $password){
                 require('view/profileUserView.php');
             }else{
                 header('Location:index.php?action=connection');
-                echo 'Le pseudo ou le mot de passe que vous avez rentré n\'est pas correct';
             }   
         }else{
-            header('Location:index.php?action=connection');
-            echo 'Le pseudo ou le mot de passe que vous avez rentré n\'est pas correct';            
+            header('Location:index.php?action=connection');            
         }
     }else{
         header('Location:index.php?action=connection');
-        echo 'Veuillez renseigner tous les champs pour vous connectez';
     }
 }
 
