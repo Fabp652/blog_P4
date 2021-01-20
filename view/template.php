@@ -25,9 +25,6 @@
                 if($_SESSION['is_admin'] == '1'){
             ?>
             <li>
-                <a href="index.php?action=new-post&amp;user-id=<?=$_SESSION['id']?>" class='font-medium lg:p-4 bg-gradient-to-t from-white to-white hover:from-blue-600 hover:to-blue-300 rounded-sm text-sm md:text-base'>Créer un billet</a>
-            </li>
-            <li>
                 <a href="index.php?action=admin" class='font-medium lg:p-4 bg-gradient-to-t from-white to-white hover:from-blue-600 hover:to-blue-300 rounded-sm text-sm md:text-base'>Espace d'administration</a>
             </li>
             <?php
