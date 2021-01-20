@@ -54,19 +54,6 @@
         </ul>
     </nav>
     <?php echo $content; ?>
-    <footer class="mt-4 p-4 bg-blue-500">
-        <ul class="text-sm md:text-base flex flex-col  justify-around">
-            <li>
-                <a href="" class="text-white">Mentions légales</a>
-            </li>
-            <li>
-                <a href="" class="text-white">Politique de confidentialité</a>
-            </li>
-            <li>
-                <a href="" class="text-white">Conditions d'utilisation</a>
-            </li>
-        </ul>
-    </footer>
 </body>
 
 </html>
