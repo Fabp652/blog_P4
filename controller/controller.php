@@ -41,6 +41,7 @@ function createUser($pseudo, $email, $password){;
         $usersManager->insertUser($newPseudo, $password_hash, $newEmail);
         require('view/connexionView.php');
     }else{
+        header('Location:index.php?action=inscription');
         echo 'Veuillez remplir tous les champs obligatoires pour vous inscrire';
     }
 }
@@ -64,12 +65,15 @@ function connectUser($pseudo, $password){
                 $_SESSION['is_admin'] = $user['is_admin'];
                 require('view/profileUserView.php');
             }else{
+                header('Location:index.php?action=connection');
                 echo 'Le pseudo ou le mot de passe que vous avez rentré n\'est pas correct';
             }   
         }else{
+            header('Location:index.php?action=connection');
             echo 'Le pseudo ou le mot de passe que vous avez rentré n\'est pas correct';            
         }
     }else{
+        header('Location:index.php?action=connection');
         echo 'Veuillez renseigner tous les champs pour vous connectez';
     }
 }
@@ -84,17 +88,22 @@ function changePassword(){
     require('view/changePasswordView.php');
 }
 
-function newPassword($password){
+function newPassword($userId, $password){
     $password_hash = password_hash($password, PASSWORD_BCRYPT);
     $usersManager = new UsersManager();
-    $usersManager->updateUser($password_hash);
-    echo 'Mot de passe modifier';
+    $updatePassword = $usersManager->updateUser($userId, $password_hash);
+    if($updatePassword == false){
+        header('Location:index.php?action=error-404');
+    }
+    else{
+        header('Location:index.php?action=profile');
+    }
 }
 
 function createComment($postId, $userId, $comment){
     $commentManager = new CommentManager();
     $affectedLines = $commentManager->postComment($postId, $userId, $comment);
-    if ($affectedLines === false) {
+    if ($affectedLines == false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
     else {
@@ -108,12 +117,17 @@ function changeComment(){
 
 function newComment($postId, $commentId, $comment){
     $commentManager = new CommentManager();
-    $changeComment = $commentManager->updateComment($commentId, $comment);
-    if ($changeComment === false) {
-        throw new Exception('Impossible de modifier le commentaire !');
+    if(isset($_GET['user_id']) && $_GET['user_id'] == $_SESSION['id']){
+        $changeComment = $commentManager->updateComment($commentId, $comment);
+        if ($changeComment === false) {
+            throw new Exception('Impossible de modifier le commentaire !');
+        }
+        else {
+            header('Location: index.php?action=post&id=' . $postId);
+        }
     }
-    else {
-        header('Location: index.php?action=post&id=' . $postId);
+    else{
+        header('Location:index.php?action=error-404');
     }
 }
 

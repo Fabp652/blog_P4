@@ -22,8 +22,7 @@ try{
                 if(isset($_POST['pseudo']) && isset($_POST['email']) && isset($_POST['password'])){
                     createUser($_POST['pseudo'], $_POST['email'], $_POST['password']);
                 }else{
-                    header('Location:index.php?action=inscription');
-                    echo 'Erreur : vous n\'avez pas remplit tout les champs';
+                    header('Location:index.php?action=error-404');
                 }
             break;
             case 'connection' :
@@ -33,24 +32,34 @@ try{
                 if(isset($_POST['pseudo']) && isset($_POST['password'])){
                     connectUser($_POST['pseudo'], $_POST['password']);
                 }else{
-                    echo 'Erreur : vous n\'avez pas remplit tout les champs';
+                    header('Location:index.php?action=error-404');
                 }                
             break;
             case 'profile' :
-                profile();
+                if(isset($_SESSION['id']) && isset($_SESSION['pseudo'])){
+                    profile();
+                }
+                else{
+                    header('Location:index.php?action=error-404');
+                }
             break;
             case 'logout' :
                 session_unset();
                 listPosts();
             break;
             case 'change-password' :
-                changePassword();
+                if(isset($_SESSION['id'])){
+                    changePassword();
+                }
+                else{
+                    header('Location:index.php?action=error-404');
+                }               
             break;
             case 'new-password' :
                 if(isset($_POST['password'])){
-                    newPassword($_POST['password']);
+                    newPassword($_SESSION['id'], $_POST['password']);
                 }else{
-                    echo 'Veuillez remplir le champs pour modifier votre mot de passe';
+                    header('Location:index.php?action=error-404');
                 }
             break;
             case 'create-comment' :
@@ -61,7 +70,12 @@ try{
                 }
             break;
             case 'change-comment' :
-                changeComment();
+                if(isset($_SESSION['id'])){
+                    changeComment();
+                }
+                else{
+                    header('Location:index.php?action=error-404');
+                }
             break;
             case 'new-comment' :
                 if(isset($_POST['comment'])){
@@ -79,50 +93,68 @@ try{
                 if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == '1'){
                     authentification();
                 }else{
-                    echo 'Vous n\'avez pas l\'autorisation d\'accéder à cette page';
+                    header('Location:index.php?action=error-404');
                 }
             break;
             case 'authentification' :
                 if(isset($_POST['pseudo']) && isset($_POST['password'])){
                     checkAuthentification($_POST['pseudo'], $_POST['password']);
                 }
+                else{
+                    header('Location:index.php?action=error-404');
+                }
             break;
             case 'create-post' :
-                if(isset($_GET['user-id']) && isset($_POST['title']) && isset($_POST['content']))
-                createPost($_GET['user-id'], $_POST['title'], $_POST['content']);
+                if(isset($_GET['user-id']) && isset($_POST['title']) && isset($_POST['content'])){
+                    createPost($_GET['user-id'], $_POST['title'], $_POST['content']);
+                }
+                else{
+                    header('Location:index.php?action=error-404');
+                }
             break;
             case 'change-post' :
-                changePost();
+                if(isset($_GET['id']) && isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1){
+                    changePost();
+                }
+                else{
+                    header('Location:index.php?action=error-404');
+                }                
             break;
             case 'update-post' :
                 if(isset($_POST['title']) && isset($_POST['content'])){
                     updatePost($_GET['id'], $_POST['title'], $_POST['content']);
                 }
+                else{
+                    header('Location:index.php?action=error-404');
+                }
             break;
             case 'delete-post' :
                 if(isset($_GET['id']) && isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1){
                     clearPost($_GET['id']);
+                }
+                else{
+                    header('Location:index.php?action=error-404');
                 }                
             break;
             case 'admin' :
                 if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1){
                     admin();
                 }else{
-                    echo 'Vous n\'avez pas l\'autorisation pour accéder à cette page';
+                    header('Location:index.php?action=error-404');
                 }
             break;
             case 'report' :
                 if(isset($_GET['comment-id'])){
                     report($_GET['comment-id']);
                 }else{
-                    echo 'Erreur';
+                    header('Location:index.php?action=error-404');
                 }                
             break;
             case 'admin-clear-comment' :
                 if(isset($_GET['comment-id'])){
                     adminClearComment($_GET['comment-id']);
                 }else{
-                    echo 'Erreur';
+                    header('Location:index.php?action=error-404');
                 }
             break;
             default :
