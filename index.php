@@ -19,8 +19,8 @@ try{
                 inscription();               
             break;
             case 'create-user' :
-                if(isset($_POST['pseudo']) && isset($_POST['email']) && isset($_POST['password'])){
-                    createUser($_POST['pseudo'], $_POST['email'], $_POST['password']);
+                if(isset($_POST['pseudo']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['validPass'])){
+                    createUser($_POST['pseudo'], $_POST['email'], $_POST['password'], $_POST['validPass']);
                 }else{
                     header('Location:index.php?action=error-404');
                 }
