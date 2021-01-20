@@ -28,8 +28,8 @@
     <?php 
     if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == '1'){        
     ?>
-        <div class="flex justify-around w-36 md:w-40 ml-6 md:ml-14 lg:ml-24 ">
-            <a href="index.php?action=change-post&amp;id=<?= $blog['id']?>" class="font-medium hover:text-blue-500 ml-1.5 md:ml-0 lg:ml-3.5 px-1 border-r-2 border-b-2 border-l-2 border-solid border-blue-400 text-sm md:text-base">Modifier</a>
+        <div class="flex justify-start w-5/6 md:w-4/5 mx-auto">
+            <a href="index.php?action=change-post&amp;id=<?= $blog['id']?>" class="font-medium hover:text-blue-500 px-1 border-r-2 border-b-2 border-l-2 border-solid border-blue-400 text-sm md:text-base">Modifier</a>
             <a href="index.php?action=delete-post&amp;id=<?= $blog['id']?>" class="font-medium hover:text-blue-500 px-1.5 border-r-2 border-b-2 border-solid border-blue-400 text-sm md:text-base">Supprimer</a>
         </div>
     <?php
