@@ -29,11 +29,13 @@ class UsersManager extends Manager{
         return $user;
     }
 
-    public function updateUser($password){
+    public function updateUser($id, $password){
         $db = $this->dbConnect();
-        $update = $db->prepare('UPDATE users SET pass = :pass');
-        $update->execute([
-            'pass' => $password
+        $update = $db->prepare('UPDATE users SET pass = :pass WHERE id = :id');
+        $updatePassword = $update->execute([
+            'pass' => $password,
+            'id' => $id
         ]);
+        return $updatePassword;
     }
 }
