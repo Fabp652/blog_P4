@@ -44,8 +44,8 @@
                 if(isset($_SESSION['id']) && $_SESSION['id'] == $comment['user_id']){
                 ?>
                     <div class="flex w-40 justify-around ml-2 absolute bottom-0">
-                        <a href="index.php?action=change-comment&amp;post-id=<?=$post['id']?>&amp;comment-id=<?=$comment['id']?>" class="hover:text-blue-800 text-sm md:text-base">Modifier</a>
-                        <a href="index.php?action=clear-comment&amp;post-id=<?=$post['id']?>&amp;comment-id=<?=$comment['id']?>" class="hover:text-blue-800 text-sm md:text-base">Supprimer</a>
+                        <a href="index.php?action=change-comment&amp;post-id=<?=$post['id']?>&amp;comment-id=<?=$comment['user_id']?>&amp;user-id=<?=$comment['user_id']?>" class="hover:text-blue-800 text-sm md:text-base">Modifier</a>
+                        <a href="index.php?action=clear-comment&amp;post-id=<?=$post['id']?>&amp;comment-id=<?=$comment['user_id']?>&amp;user-id=<?=$comment['user_id']?>" class="hover:text-blue-800 text-sm md:text-base">Supprimer</a>
                     </div>
                 <?php
                 }
