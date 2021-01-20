@@ -14,9 +14,9 @@
     <title><?php echo $title; ?></title>
 </head>
 
-<body class="bg-gradient-to-b from-white to-gray-200">
-    <nav class="lg:pr-20 h-16 sticky w-full top-0 bg-white">
-        <ul class='flex flex-wrap justify-center h-full items-center lg:justify-end'>
+<body class="bg-gradient-to-b bg-fixed from-white to-gray-200">
+    <nav class="lg:pr-20 lg:h-16 sticky w-full top-0 bg-white">
+        <ul class='flex flex-wrap justify-center h-full items-center flex-col lg:flex-row lg:justify-end'>
             <li>
                 <a href='index.php?action=listPost' class='font-medium lg:p-4 bg-gradient-to-t from-white to-white hover:from-blue-600 hover:to-blue-300 rounded-sm text-sm md:text-base'>Accueil</a>
             </li>
