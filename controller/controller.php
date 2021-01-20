@@ -149,10 +149,14 @@ function authentification(){
 
 function checkAuthentification($pseudo, $password){
     if($pseudo === $_SESSION['pseudo'] && $password === $_SESSION['password']){
-        require('view/newPostView.php');
+        admin();
     }else{
         echo 'Le pseudo ou le mot de passe n\'est pas correct';
     }
+}
+
+function newPost(){
+    require('view/newPostView.php');
 }
 
 function createPost($userId, $title, $content){
